@@ -2,12 +2,10 @@
 require_once  '../conexion/conexion.php';
 
 class imagen {
-
-    function agregarImagen(){
-        $connection = connection();
-        $sql = "SELECT * FROM libro";
-        $respuesta = $connection->query($sql);
-        $imagen = $respuesta->fetch_all(MYSQLI_ASSOC);// array con clave y valor 
-        return $imagen;
+    public function agregarImagen( $nombre,){
+            $sql = "INSERT INTO  VALUES(0,)";
+            $connection = connection();
+            $respuesta = $connection->query($sql);
+            return $respuesta;
     }
 }
