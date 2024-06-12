@@ -9,15 +9,23 @@ switch ($function) {
     case "agregar":
       agregarImagen();
     break;
+    case "obtener":
+        obtenerImagen();
+        break;
     }
     
     function agregarImagen(){
         $nombre = $_POST['nombre'];
-        
-       
-        $resultado = (new imagen())->agregarImagen( $nombre);
+        $imagen = $_FILES['imagen'];
+        $imagen = new imagen();
+        $resultado = (new imagen())->agregarImagen( $nombre, $imagen);
         echo json_encode($resultado);
-     }
+    }
+    function obtenerImagen(){
+        $resultado = (new imagen())->obtenerImagen();   
+        echo json_encode($resultado);
+    }
+
     
 
 
