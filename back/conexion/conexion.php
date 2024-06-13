@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin:*");
 function connection (){
     $host = "localhost";
     $usuario = "root";

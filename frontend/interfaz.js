@@ -1,49 +1,34 @@
 window.onload=()=>{
 
-agregarEventoForm()
+    enviarImagen();
     
-}
-    function agregarEventoForm(){
-        let formElemento = document.querySelector("#formuimagen");
-        formElemento.onsumbit = (e)=>{
-            e.preventDefault();
-            enviarImagen(formElemento);
+    }
+    
+        function enviarImagen(){
+    
+            let formElement = document.querySelector("#formuimagen");
+            formElement.onsubmit = async (e) =>{
+                e.preventDefault();
+    
+            let formData = new FormData(formElement);
+    
+            let url ="http://localhost/gestorimagen/back/controlador/controlador_imagen.php?function=agregarImagen";
+       
+    
+            let config = {
+                method:"POST",
+                body:formData
+            }
+    
+            let respuesta = await fetch(url, config);
+            let datos = await respuesta.json();
+            console.log(datos);
         }
-    }
-    async function enviarImagen(form){
-        let formData = new FormData(form);
-        let config = {
-            method:"POST",
-            body:formData
+    
+    
         }
-        let url ="http://localhost/gestorimagen/back/controlador/controlador_imagen.php?function=agregar";
-        await fetch(url,config);
-        let imagenes = await obtenerimg();
-        mostrarImg(imagenes);
-    }
-    function mostrarImg(imagenes){
-        let listaimgEleement = document.querySelector("#listaimagen");
-        listaimgEleement.innerHTML="";
-        imagenes.forEach(imagen => {
-            listaimgEleement.innerHTML+=`
-            <div>
-            <p>${imagen.nombre}</p>
-            <img src"../../../backend/imagenes/${imagen.id}.${imagen.extension}">
-            </div>
-            `
-        });
-    }
-     async function obtenerimg(){
-        let url = "http://localhost/gestorimagen/back/controlador/controlador_imagen.php?function=obtener";
-        let respuesta = await fetch(url);
-        let imagenes = await respuesta.json();
-        return imagenes;
-
-    }
-   
 
 
-
-
+        
 
   
